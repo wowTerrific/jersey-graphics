@@ -6,7 +6,7 @@ const state = {
   text: 'VARSITY\nCHAMPIONS',
   font: "'Graduate', serif",
   fontSize: 105,
-  lineFontSizes: [105, 105], // Per-line font sizes (up to 350px)
+  lineFontSizes: [105, 105], // Per-line font sizes (up to 1000px)
   letterSpacing: 6,
   lineHeightMultiplier: 1.15,
   textAlign: 'center', // 'left' | 'center' | 'right'
@@ -330,7 +330,7 @@ function bindSliderAndNumber({ sliderId, numberId, labelId, min, max, formatLabe
 }
 
 /**
- * Generates and synchronizes per-line font-size controls (slider + number input up to 350px)
+ * Generates and synchronizes per-line font-size controls (slider + number input up to 1000px)
  */
 function renderLineFontSizeControls() {
   if (!lineFontContainer) return;
@@ -377,7 +377,7 @@ function renderLineFontSizeControls() {
     const slider = document.createElement('input');
     slider.type = 'range';
     slider.min = '20';
-    slider.max = '350';
+    slider.max = '1000';
     slider.value = `${size}`;
     slider.id = `input-line-font-${idx}`;
 
@@ -388,7 +388,7 @@ function renderLineFontSizeControls() {
     numInput.type = 'number';
     numInput.className = 'form-input-number';
     numInput.min = '20';
-    numInput.max = '350';
+    numInput.max = '1000';
     numInput.value = `${size}`;
     numInput.id = `num-line-font-${idx}`;
 
@@ -410,7 +410,7 @@ function renderLineFontSizeControls() {
       let n = parseInt(val, 10);
       if (isNaN(n)) return;
       if (n < 20) n = 20;
-      if (n > 350) n = 350;
+      if (n > 1000) n = 1000;
 
       state.lineFontSizes[idx] = n;
       if (source !== 'slider') slider.value = `${n}`;

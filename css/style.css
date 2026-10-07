@@ -364,7 +364,7 @@ input[type=range]::-webkit-slider-thumb:hover {
 }
 
 .form-input-number {
-  width: 72px;
+  width: 78px;
   background: #04070c;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);

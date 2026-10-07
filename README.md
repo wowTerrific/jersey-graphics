@@ -19,7 +19,7 @@ JerseyGraphics Studio is a lightweight web application that creates authentic je
   - Exact outer bounding box outline with corner registration crop marks.
   - Live dimension badge displaying inches and pixel counts to help adjust font size, letter spacing, and line spacing to fit within the designated garment print area.
 - **Multi-Line Varsity Typography with Per-Line Sizing**:
-  - **Independent Per-Line Font Sizing**: Adjust font size for each line on the shirt individually, with support up to **350px**.
+  - **Independent Per-Line Font Sizing**: Adjust font size for each line on the shirt individually, with support up to **1000px**.
   - **Typed & Slider Controls**: Every numeric sizing control (font size, letter spacing, line height, curve angle, outline thickness, mesh hole size/spacing) features both a smooth slider and a direct **typeable number input** with real-time bi-directional synchronization.
   - Multi-line text support with customizable line spacing / leading.
   - Text alignment controls: **Left**, **Center**, and **Right**.
