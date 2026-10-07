@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JerseyGraphics Studio — Athletic Perforated Typography Generator</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+
+  <!-- Curated Google Athletic & Varsity Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Graduate&family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap"
+    rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-icon">
+        <i data-lucide="layers" style="width: 22px; height: 22px; stroke-width: 2.5;"></i>
+      </div>
+      <div>
+        <h1 class="brand-title">
+          JerseyGraphics<span>Studio</span>
+        </h1>
+        <p class="brand-subtitle">Athletic perforated mesh typography & transparent 300 DPI graphic generator</p>
+      </div>
+    </div>
+
+    <!-- Quick Export Action -->
+    <div class="header-actions">
+      <button id="btn-export-quick" class="btn-primary" title="Export transparent 300 DPI PNG">
+        <i data-lucide="download" style="width: 16px; height: 16px; stroke-width: 2.5;"></i>
+        <span>Export 300 DPI PNG</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="app-layout">
+
+    <!-- Left Sidebar: Controls & Options -->
+    <aside class="controls-sidebar">
+
+      <!-- Section 1: Print Size Selection -->
+      <section class="control-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i data-lucide="maximize" style="width: 16px; height: 16px;"></i> Print Format & Dimensions
+          </h2>
+        </div>
+
+        <div class="grid-2">
+          <button class="size-select-btn active-size-btn" data-size="chest">
+            <div class="size-title">
+              <span>Chest / Banner</span>
+              <i data-lucide="check-circle-2" style="width: 14px; height: 14px; color: var(--accent-primary);"></i>
+            </div>
+            <div class="size-meta">10.95″ × 5.95″</div>
+            <div class="size-meta" style="color: var(--accent-primary);">3,285 × 1,785 px</div>
+          </button>
+
+          <button class="size-select-btn" data-size="full">
+            <div class="size-title">
+              <span>Full Front</span>
+              <i data-lucide="circle" style="width: 14px; height: 14px; color: var(--text-dim);"></i>
+            </div>
+            <div class="size-meta">10.95″ × 11.95″</div>
+            <div class="size-meta" style="color: var(--accent-primary);">3,285 × 3,585 px</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Section 2: Typography & Multi-Line Text -->
+      <section class="control-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i data-lucide="type" style="width: 16px; height: 16px;"></i> Text & Varsity Font
+          </h2>
+          <button id="btn-uppercase-toggle" class="btn-secondary" title="Convert to Uppercase">
+            Aa &rarr; AA
+          </button>
+        </div>
+
+        <!-- Multi-line Text Area -->
+        <div class="form-group">
+          <label class="form-label" for="input-text">Display Text (Multi-Line Supported)</label>
+          <textarea id="input-text" class="form-textarea" rows="2" placeholder="Enter jersey words...">VARSITY
+CHAMPIONS</textarea>
+        </div>
+
+        <!-- Text Alignment & Curated Athletic Fonts -->
+        <div class="form-group">
+          <label class="form-label">Athletic Font Family</label>
+          <div class="grid-3">
+            <button class="font-select-btn active-font-btn" data-font="'Graduate', serif">
+              <span class="font-preview-letters" style="font-family: 'Graduate', serif;">AB</span>
+              <span class="font-label">Collegiate</span>
+            </button>
+            <button class="font-select-btn" data-font="'Bebas Neue', sans-serif">
+              <span class="font-preview-letters" style="font-family: 'Bebas Neue', sans-serif;">AB</span>
+              <span class="font-label">Condensed</span>
+            </button>
+            <button class="font-select-btn" data-font="'Russo One', sans-serif">
+              <span class="font-preview-letters" style="font-family: 'Russo One', sans-serif;">AB</span>
+              <span class="font-label">Block</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Alignment Controls -->
+        <div class="form-group">
+          <label class="form-label">Text Alignment</label>
+          <div class="grid-3">
+            <button class="btn-tab align-btn" data-align="left">
+              <i data-lucide="align-left" style="width: 14px; height: 14px;"></i> Left
+            </button>
+            <button class="btn-tab align-btn active-btn-tab" data-align="center">
+              <i data-lucide="align-center" style="width: 14px; height: 14px;"></i> Center
+            </button>
+            <button class="btn-tab align-btn" data-align="right">
+              <i data-lucide="align-right" style="width: 14px; height: 14px;"></i> Right
+            </button>
+          </div>
+        </div>
+
+        <!-- Varsity Concentric Arc Slider -->
+        <div class="form-group">
+          <div class="form-label">
+            <span>Concentric Arc / Arch Curve</span>
+            <span id="label-arc-val" class="form-label-val">0° (Flat)</span>
+          </div>
+          <div class="slider-number-row">
+            <input type="range" id="input-arc" min="-45" max="45" value="0" step="1">
+            <div class="number-unit-wrapper">
+              <input type="number" id="num-arc" class="form-input-number" min="-45" max="45" value="0">
+              <span class="input-unit-tag">°</span>
+            </div>
+          </div>
+          <div
+            style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-dim); font-family: monospace;">
+            <span>-45° Inverted</span>
+            <span>0° Straight</span>
+            <span>+45° Arch</span>
+          </div>
+        </div>
+
+        <!-- Per-Line Font Sizes (up to 350px) -->
+        <div class="form-group">
+          <div class="form-label">
+            <span>Line Font Sizes (Up to 350px)</span>
+            <span style="font-size: 10px; color: var(--text-dim); font-weight: normal;">Per-line control</span>
+          </div>
+          <div id="line-font-sizes-container" class="line-font-list">
+            <!-- Dynamically populated per line -->
+          </div>
+        </div>
+
+        <!-- Letter Spacing & Line Spacing Sliders with Typed Inputs -->
+        <div class="form-group">
+          <div class="form-label">
+            <span>Letter Spacing</span>
+            <span id="label-letter-spacing" class="form-label-val">6px</span>
+          </div>
+          <div class="slider-number-row">
+            <input type="range" id="input-letter-spacing" min="0" max="60" value="6">
+            <div class="number-unit-wrapper">
+              <input type="number" id="num-letter-spacing" class="form-input-number" min="0" max="60" value="6">
+              <span class="input-unit-tag">px</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Line Spacing Slider -->
+        <div class="form-group">
+          <div class="form-label">
+            <span>Line Spacing / Leading</span>
+            <span id="label-line-height" class="form-label-val">1.15×</span>
+          </div>
+          <div class="slider-number-row">
+            <input type="range" id="input-line-height" min="0.5" max="2.5" step="0.05" value="1.15">
+            <div class="number-unit-wrapper">
+              <input type="number" id="num-line-height" class="form-input-number" min="0.5" max="2.5" step="0.05"
+                value="1.15">
+              <span class="input-unit-tag">×</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Section 3: Colors & Athletic Outline -->
+      <section class="control-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i data-lucide="palette" style="width: 16px; height: 16px;"></i> Fill & Outline Colors
+          </h2>
+        </div>
+
+        <!-- Main Fill Color Picker -->
+        <div class="form-group">
+          <label class="form-label">Main Color (Text Fill)</label>
+          <div class="color-picker-row">
+            <label id="btn-picker-fill" for="input-color-fill" class="color-trigger-btn" title="Pick fill color">
+              <span class="color-preview-swatch" style="background-color: #F59E0B;"></span>
+              <input type="color" id="input-color-fill" value="#F59E0B" class="color-native-input">
+            </label>
+            <input type="text" id="input-color-fill-hex" value="#F59E0B" class="form-input-text"
+              style="width: 90px; text-transform: uppercase;">
+            <button id="eyedropper-fill" type="button" class="btn-eyedropper" title="Pick color from screen">
+              <i data-lucide="pipette" style="width: 14px; height: 14px;"></i>
+            </button>
+
+            <!-- Classic Swatches -->
+            <div class="color-swatches-preset">
+              <div class="preset-color-dot preset-fill-btn" style="background: #FFFFFF;" data-color="#FFFFFF"
+                title="White"></div>
+              <div class="preset-color-dot preset-fill-btn" style="background: #F59E0B;" data-color="#F59E0B"
+                title="Varsity Gold"></div>
+              <div class="preset-color-dot preset-fill-btn" style="background: #DC2626;" data-color="#DC2626"
+                title="Crimson Red"></div>
+              <div class="preset-color-dot preset-fill-btn" style="background: #2563EB;" data-color="#2563EB"
+                title="Royal Blue"></div>
+              <div class="preset-color-dot preset-fill-btn" style="background: #16A34A;" data-color="#16A34A"
+                title="Kelly Green"></div>
+              <div class="preset-color-dot preset-fill-btn" style="background: #0F172A;" data-color="#0F172A"
+                title="Midnight Navy"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outline / Stroke Toggle & Options -->
+        <div class="form-group" style="padding-top: 10px; border-top: 1px solid var(--border-color);">
+          <div class="form-label">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="input-stroke-enabled" checked
+                style="accent-color: var(--accent-primary); width: 16px; height: 16px;">
+              <span style="color: var(--text-main); font-weight: 700;">Secondary Color (Outline)</span>
+            </label>
+            <span id="label-stroke-width" class="form-label-val">8px</span>
+          </div>
+
+          <div id="stroke-options-container" style="display: flex; flex-direction: column; gap: 12px; margin-top: 6px;">
+            <!-- Outline Color Picker -->
+            <div class="color-picker-row">
+              <label id="btn-picker-stroke" for="input-color-stroke" class="color-trigger-btn"
+                title="Pick outline color">
+                <span class="color-preview-swatch" style="background-color: #FFFFFF;"></span>
+                <input type="color" id="input-color-stroke" value="#FFFFFF" class="color-native-input">
+              </label>
+              <input type="text" id="input-color-stroke-hex" value="#FFFFFF" class="form-input-text"
+                style="width: 90px; text-transform: uppercase;">
+              <button id="eyedropper-stroke" type="button" class="btn-eyedropper" title="Pick color from screen">
+                <i data-lucide="pipette" style="width: 14px; height: 14px;"></i>
+              </button>
+
+              <div class="color-swatches-preset">
+                <div class="preset-color-dot preset-stroke-btn" style="background: #FFFFFF;" data-color="#FFFFFF"
+                  title="White"></div>
+                <div class="preset-color-dot preset-stroke-btn" style="background: #000000;" data-color="#000000"
+                  title="Black"></div>
+                <div class="preset-color-dot preset-stroke-btn" style="background: #F59E0B;" data-color="#F59E0B"
+                  title="Varsity Gold"></div>
+                <div class="preset-color-dot preset-stroke-btn" style="background: #DC2626;" data-color="#DC2626"
+                  title="Crimson Red"></div>
+              </div>
+            </div>
+
+            <!-- Outline Thickness Slider with Typed Input -->
+            <div class="form-group">
+              <div class="form-label">
+                <span>Outline Thickness</span>
+                <span class="form-label-val">1 - 50px</span>
+              </div>
+              <div class="slider-number-row">
+                <input type="range" id="input-stroke-width" min="1" max="50" value="8">
+                <div class="number-unit-wrapper">
+                  <input type="number" id="num-stroke-width" class="form-input-number" min="1" max="50" value="8">
+                  <span class="input-unit-tag">px</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Punch through stroke toggle -->
+            <label
+              style="display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-radius: var(--radius-sm); background: #04070c; border: 1px solid var(--border-color); cursor: pointer;">
+              <input type="checkbox" id="input-punch-stroke" checked
+                style="accent-color: var(--accent-primary); width: 16px; height: 16px; margin-top: 2px;">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-main);">Punch holes through outline
+                  too</div>
+                <div style="font-size: 0.7rem; color: var(--text-dim); line-height: 1.3;">Perforates both inner fill and
+                  outer border. When unchecked, outline stays solid.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Section 4: Jersey Perforated Mesh Filter -->
+      <section class="control-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i data-lucide="grid" style="width: 16px; height: 16px;"></i> Jersey Mesh Perforation
+          </h2>
+        </div>
+
+        <!-- Pattern Layout -->
+        <div class="form-group">
+          <label class="form-label">Mesh Pattern Layout</label>
+          <div class="grid-2">
+            <button class="btn-tab pattern-btn active-btn-tab" data-pattern="staggered">
+              <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Staggered Honeycomb
+            </button>
+            <button class="btn-tab pattern-btn" data-pattern="grid">
+              <i data-lucide="layout-grid" style="width: 14px; height: 14px;"></i> Regular Grid
+            </button>
+          </div>
+        </div>
+
+        <!-- Hole Geometry -->
+        <div class="form-group">
+          <label class="form-label">Hole Geometry</label>
+          <div class="grid-2">
+            <button class="btn-tab shape-btn active-btn-tab" data-shape="pill">
+              <span
+                style="width: 8px; height: 14px; border-radius: 4px; border: 2px solid currentColor; display: inline-block;"></span>
+              Athletic Pill
+            </button>
+            <button class="btn-tab shape-btn" data-shape="circle">
+              <span
+                style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid currentColor; display: inline-block;"></span>
+              Circle Eyelet
+            </button>
+          </div>
+        </div>
+
+        <!-- Hole Radius and Spacing with Typed Inputs -->
+        <div class="grid-2">
+          <div class="form-group">
+            <div class="form-label">
+              <span>Hole Size</span>
+              <span id="label-hole-size" class="form-label-val">4.5px</span>
+            </div>
+            <div class="slider-number-row">
+              <input type="range" id="input-hole-size" min="1" max="20" step="0.5" value="4.5">
+              <div class="number-unit-wrapper">
+                <input type="number" id="num-hole-size" class="form-input-number" min="1" max="20" step="0.5"
+                  value="4.5">
+                <span class="input-unit-tag">px</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">
+              <span>Hole Spacing</span>
+              <span id="label-hole-spacing" class="form-label-val">14px</span>
+            </div>
+            <div class="slider-number-row">
+              <input type="range" id="input-hole-spacing" min="4" max="50" step="1" value="14">
+              <div class="number-unit-wrapper">
+                <input type="number" id="num-hole-spacing" class="form-input-number" min="4" max="50" step="1"
+                  value="14">
+                <span class="input-unit-tag">px</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </aside>
+
+    <!-- Right Side: Preview Stage & Export Area -->
+    <section class="preview-stage-container">
+
+      <!-- Stage Toolbar -->
+      <div class="stage-toolbar">
+
+        <!-- Mock Garment Selector -->
+        <div class="garment-toolbar-group">
+          <span class="toolbar-label">Mock Garment:</span>
+
+          <div class="garment-pill-group">
+            <button class="garment-mode-btn active-garment" data-mode="checkerboard" title="Transparent alpha grid">
+              <span class="garment-swatch-mini" style="background: #334155;"></span>
+              <span>Transparent</span>
+            </button>
+            <button class="garment-mode-btn" data-mode="heather" title="Heather Dark fabric">
+              <span class="garment-swatch-mini" style="background: #232731;"></span>
+              <span>Heather Dark fabric</span>
+            </button>
+            <button class="garment-mode-btn" data-mode="red" title="Red fabric">
+              <span class="garment-swatch-mini" style="background: #b91c1c;"></span>
+              <span>Red fabric</span>
+            </button>
+            <button class="garment-mode-btn" data-mode="blue" title="Blue fabric">
+              <span class="garment-swatch-mini" style="background: #1d4ed8;"></span>
+              <span>Blue fabric</span>
+            </button>
+            <button class="garment-mode-btn" data-mode="white" title="White fabric">
+              <span class="garment-swatch-mini" style="background: #f1f5f9;"></span>
+              <span>White fabric</span>
+            </button>
+          </div>
+
+          <!-- Custom Garment Color Picker -->
+          <div style="display: flex; align-items: center; gap: 6px; margin-left: 6px;">
+            <label id="btn-picker-garment" for="input-color-garment" class="color-trigger-btn"
+              title="Pick custom fabric color">
+              <span class="color-preview-swatch" style="background-color: #1E293B;"></span>
+              <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Custom fabric</span>
+              <input type="color" id="input-color-garment" value="#1E293B" class="color-native-input">
+            </label>
+            <input type="text" id="input-color-garment-hex" value="#1E293B" class="form-input-text"
+              style="width: 80px; text-transform: uppercase;">
+            <button id="eyedropper-garment" type="button" class="btn-eyedropper" title="Pick garment color from screen">
+              <i data-lucide="pipette" style="width: 14px; height: 14px;"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Alpha Punch Badge -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div
+            style="display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; font-size: 11px; font-family: monospace;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #34d399;"></span>
+            <span>100% Alpha Cutout Mesh</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Viewport Stage -->
+      <div id="viewport-stage" class="viewport-stage checkerboard-bg">
+
+        <!-- Live Visual Canvas Wrapper with Print Boundary Lines -->
+        <div id="canvas-wrapper" class="canvas-wrapper">
+
+          <!-- Outer Print Boundary Frame & Corner Crop Marks -->
+          <div class="print-boundary-frame">
+            <span class="crop-mark crop-tl"></span>
+            <span class="crop-mark crop-tr"></span>
+            <span class="crop-mark crop-bl"></span>
+            <span class="crop-mark crop-br"></span>
+
+            <!-- Dimension badge -->
+            <div class="boundary-badge">
+              <i data-lucide="crop" style="width: 12px; height: 12px;"></i>
+              <span id="boundary-dimension-label">10.95″ × 5.95″</span>
+              <span style="opacity: 0.5;">|</span>
+              <span id="boundary-pixel-label">3,285 × 1,785 px @ 300 DPI</span>
+            </div>
+          </div>
+
+          <!-- Canvas Element -->
+          <canvas id="preview-canvas"></canvas>
+        </div>
+
+      </div>
+
+      <!-- High DPI Export Bar (Footer) -->
+      <div class="export-bar">
+
+        <div class="spec-info">
+          <div class="spec-icon-box">
+            <i data-lucide="printer" style="width: 20px; height: 20px;"></i>
+          </div>
+          <div>
+            <div class="spec-text-main">
+              <span>Print Specification: True 300 DPI PNG</span>
+            </div>
+            <p class="spec-text-sub">Exports calibrated transparent PNG with embedded pHYs 300 DPI metadata for garment
+              printers</p>
+          </div>
+        </div>
+
+        <!-- Export Action Button -->
+        <button id="btn-export-main" class="btn-primary" style="padding: 12px 28px; font-size: 0.95rem;">
+          <i data-lucide="download-cloud" style="width: 18px; height: 18px; stroke-width: 2.5;"></i>
+          <span>Export 300 DPI PNG</span>
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast-modal">
+    <div class="toast-icon">
+      <i data-lucide="check" style="width: 16px; height: 16px; stroke-width: 3;"></i>
+    </div>
+    <div id="toast-message" style="font-size: 0.8rem; font-weight: 600;">Export initiated...</div>
+  </div>
+
+  <!-- Application Logic Modules -->
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
