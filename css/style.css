@@ -129,6 +129,13 @@ body {
   gap: 12px;
 }
 
+/* Hide top quick export button on mobile screens (< 768px) */
+@media (max-width: 767px) {
+  #btn-export-quick {
+    display: none !important;
+  }
+}
+
 /* Buttons */
 .btn-primary {
   display: inline-flex;
@@ -184,32 +191,38 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
+}
+
+/* Left Sidebar Controls (Mobile default: natural height, no inner scrollbar) */
+.controls-sidebar {
+  width: 100%;
+  background: rgba(12, 18, 29, 0.6);
+  padding: 16px;
+  max-height: none;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-right: none;
+  border-bottom: 1px solid var(--border-color);
 }
 
 @media (min-width: 1024px) {
   .app-layout {
     flex-direction: row;
+    overflow: hidden;
   }
-}
 
-/* Left Sidebar Controls */
-.controls-sidebar {
-  width: 100%;
-  border-right: 1px solid var(--border-color);
-  background: rgba(12, 18, 29, 0.6);
-  padding: 20px;
-  overflow-y: auto;
-  max-height: calc(100vh - 65px);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-@media (min-width: 1024px) {
   .controls-sidebar {
     width: 480px;
     flex-shrink: 0;
+    max-height: calc(100vh - 65px);
+    overflow-y: auto;
+    border-right: 1px solid var(--border-color);
+    border-bottom: none;
+    padding: 20px;
+    gap: 20px;
   }
 }
 
@@ -667,7 +680,6 @@ input[type=range]::-webkit-slider-thumb:hover {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  flex-wrap: wrap;
   z-index: 20;
 }
 
@@ -675,6 +687,31 @@ input[type=range]::-webkit-slider-thumb:hover {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
+}
+
+/* On mobile / tablet screens (< 1024px), stage toolbar scrolls horizontally so users can access all garments */
+@media (max-width: 1023px) {
+  .stage-toolbar {
+    padding: 10px 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+  }
+  .stage-toolbar::-webkit-scrollbar {
+    height: 4px;
+  }
+  .stage-toolbar::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+  }
+  .garment-toolbar-group {
+    min-width: max-content;
+  }
+  .alpha-punch-badge-container {
+    display: none;
+  }
 }
 
 .toolbar-label {
@@ -877,6 +914,30 @@ input[type=range]::-webkit-slider-thumb:hover {
 .spec-text-sub {
   font-size: 0.75rem;
   color: var(--text-dim);
+}
+
+/* Mobile responsive stage and export adjustments */
+@media (max-width: 767px) {
+  .viewport-stage {
+    padding: 24px 10px;
+    min-height: 320px;
+  }
+  .canvas-wrapper {
+    max-width: 98%;
+    max-height: 52vh;
+  }
+  .boundary-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    bottom: -24px;
+  }
+  .export-bar {
+    padding: 12px 16px;
+  }
+  .export-bar .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* Toast Notification */
